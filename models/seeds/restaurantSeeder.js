@@ -1,25 +1,14 @@
-// mongoose
-const mongoose = require('mongoose')
 const Restaurant = require('../restaurant')
-const data = require('../../restaurant.json')
-const restaurantList = data.results
+const db = require('../../config/mongoose')
+const newData = require('../../restaurant.json')
+const restaurantList = newData.results
 
-//avoid deprecation warning
-mongoose.connect('mongodb://localhost/restaurant-list', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
 
-const db = mongoose.connection
-// failed
-db.on('error', () => {
-  console.log('mongodb error!')
-})
-// succeed
+// 連線成功
 db.once('open', () => {
-  console.log('mongodb connected')
-  restaurantList.forEach((restaurant) => {
+  restaurantList.forEach(restaurant => {
     Restaurant.create({
+      id: restaurant.id,
       name: restaurant.name,
       name_en: restaurant.name_en,
       category: restaurant.category,
@@ -31,5 +20,5 @@ db.once('open', () => {
       description: restaurant.description
     })
   })
-  console.log('restaurantSeeder done!')
+  console.log('done')
 })
