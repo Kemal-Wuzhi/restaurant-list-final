@@ -30,5 +30,5 @@ app.use(routes)
 
 // start the server
 app.listen(port, () => {
-  console.log(`Express on localhost:${port}`)
+  console.log(`xpress is listening on http://localhost:${port}`)
 })
