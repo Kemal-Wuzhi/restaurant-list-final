@@ -1,6 +1,6 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const FacebookStrategy = require('passport-faecbook').Strategy
+const FacebookStrategy = require('passport-facebook').Strategy
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 
@@ -27,7 +27,7 @@ passport.user(new LocalStrategy({
         }
         return bcrypt.compare(password, user.password)
           .then(isMatch => {
-            if (!isMathch) {
+            if (!isMatch) {
               return done(null, false, req.flash('errors_msg', "Email or Password isn't correct"))
             }
             return done(null, user)
@@ -69,7 +69,7 @@ passport.serializeUser((user, done) => {
 })
 passport.deserializeUser((id, done) => {
   User.findById(id)
-    .laen()
+    .lean()
     .then(user => done(null, user))
     .catch(error => done(error, null))
 })
