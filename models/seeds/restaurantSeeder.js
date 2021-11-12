@@ -1,12 +1,12 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 const Restaurant = require('../restaurant')
 const db = require('../../config/mongoose')
 const newData = require('../../restaurant.json')
 const restaurantList = newData.results
-
+const User = require('../user')
 const bcrypt = require('bcryptjs')
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config()
-}
 
 const SEED_USER = [{
     email: 'user1@example.com',
