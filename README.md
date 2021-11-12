@@ -20,26 +20,26 @@
 7.使用facebook登入  
 
 ### 網站需求
-node.js: v13.14.0
-express: v4.17.1
-express-handlebars: v5.3.3
+node.js: v13.14.0  
+express: v4.17.1  
+express-handlebars: v5.3.3  
 
 ### 安裝方法
-下載專案
-  git clone https://github.com/azod2/restaurant_list-final.git
+下載專案  
+  git clone https://github.com/azod2/restaurant_list-final.git  
 
-安裝相關套件
-  npm install
+安裝相關套件  
+  npm install  
 
-將.env.example 改成 .env，並使用自己的相關個人資料填入以下欄位
-  FACEBOOK_ID = 'YOUR ID'
-  FACEBOOK_SECRET = 'YOUR SECRET'
+將.env.example 改成 .env，並使用自己的相關個人資料填入以下欄位  
+  FACEBOOK_ID = 'YOUR ID'  
+  FACEBOOK_SECRET = 'YOUR SECRET'  
 
-執行種子資料
-  npm run seed
+執行種子資料  
+  npm run seed  
 
-執行
-npm run dev
+執行  
+npm run dev  
 
-啟動網頁
-http://localhost:3000
+啟動網頁  
+http://localhost:3000  
