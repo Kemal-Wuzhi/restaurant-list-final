@@ -3,22 +3,47 @@ const db = require('../../config/mongoose')
 const newData = require('../../restaurant.json')
 const restaurantList = newData.results
 
+const bcrypt = require('bcryptjs')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
-// 連線成功
+const SEED_USER = [{
+    email: 'user1@example.com',
+    password: '00000000',
+    restaurantList_index: [0, 1, 2]
+  },
+  {
+    email: 'user2@example.com',
+    password: '00000000',
+    restaurantList_index: [3, 4, 5]
+  }
+]
+
 db.once('open', () => {
-  restaurantList.forEach(restaurant => {
-    Restaurant.create({
-      id: restaurant.id,
-      name: restaurant.name,
-      name_en: restaurant.name_en,
-      category: restaurant.category,
-      image: restaurant.image,
-      location: restaurant.location,
-      phone: restaurant.phone,
-      google_map: restaurant.google_map,
-      rating: restaurant.rating,
-      description: restaurant.description
+  Promise.all(
+      Array.from(SEED_USER, SEED_USER => {
+        return bcrypt
+          .genSalt(10)
+          .then(salt => bcrypt.hash(SEED_USER.password, salt))
+          .then(hash => User.create({
+            name: SEED_USER.name,
+            email: SEED_USER.email,
+            password: hash
+          }))
+          .then(user => {
+            const userId = user._id
+            const restaurant = []
+            Array.from(SEED_USER.restaurantList_index, index => {
+              restaurantList[index].userId = userId
+              restaurant.push(restaurantList[index])
+            })
+            return Restaurant.create(restaurant)
+          })
+      })
+    )
+    .then(() => {
+      console.log('done.')
+      process.exit()
     })
-  })
-  console.log('done')
 })
