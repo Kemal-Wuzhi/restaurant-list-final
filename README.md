@@ -1,47 +1,44 @@
-# s2-3_restaurant
+# restaurant list
+### 功能
+1.使用者可以在首頁瀏覽餐廳資料：
+餐廳名稱
+餐廳類型
+餐廳照片
+餐廳評價
 
-##### 提供使用者蒐藏自己喜愛的餐廳資訊
+2.使用者可以點擊餐廳圖示查看以下資訊：
+餐廳類別
+餐廳地址
+餐廳電話
+餐廳描述
 
+3.使用者可以透過名稱搜尋餐廳
+4.使用者可以透過餐廳類別搜尋餐廳
+5.可以新增、修改、刪除餐廳資料
+6.可以註冊使用者
+7.使用facebook登入
 
+### 網站需求
+node.js: v13.14.0
+express: v4.17.1
+express-handlebars: v5.3.3
 
-### 主要功能
+### 安裝方法
+下載專案
+  git clone https://github.com/azod2/restaurant_list-final.git
 
-- ###### 首頁提供所有餐廳資訊，包含名稱、分類、評分、餐廳圖片等
-
-- 使用者可以點擊餐廳圖片或文字觀看更詳細的內容，包含類別、地址、電話、評價等。
-
-- 可以名稱或類別作為關鍵字搜尋特定餐廳
-
-### 環境
-
-- Node.js v10.15.0
-- Express v4.17.1
-- Express-handlebars v5.3.3
-
-### 安裝
-
-- 開啟終端機(Terminal)將此專案 Clone 至本機電腦
-
-  git clone https://github.com/Kemal-Wuzhi/s2-3_restaurant.git
-
-- 進入存放此專案的資料夾
-
-  cd s2-3_restaurant
-
-- 安裝 npm 套件
-
+安裝相關套件
   npm install
 
-- 啟動伺服器
+將.env.example 改成 .env，並使用自己的相關個人資料填入以下欄位
+  FACEBOOK_ID = 'YOUR ID'
+  FACEBOOK_SECRET = 'YOUR SECRET'
 
-  npm run dev
+執行種子資料
+  npm run seed
 
-- Terminal 顯示成功連結本地伺服器
+執行
+npm run dev
 
-  Express is listen on localhost:3000
-
-- 在瀏覽器中輸入 [http://localhost:3000](http://localhost:3000/) 開始執行
-
-### 
-
-## 
+啟動網頁
+http://localhost:3000
