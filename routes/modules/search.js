@@ -5,19 +5,28 @@ const Restaurant = require('../../models/restaurant')
 
 // search
 router.get('/', (req, res) => {
+  const userId = req.user._id
   const keyword = req.query.keyword.trim().toLowerCase()
-  Restaurant.find()
+  const keywordRegex = new RegExp(keyword, 'i')
+  Restaurant.find({
+      userId,
+      $or: [{
+        category: {
+          $regex: keywordRegex
+        }
+      }, {
+        name: {
+          $regex: keywordRegex
+        }
+      }]
+    })
     .lean()
     .then(restaurants => {
-      restaurants = restaurants.filter(restaurant =>
-        restaurant.name.toLowerCase().includes(keyword) || restaurant.category.toLowerCase().includes(keyword)
-      )
       res.render('index', {
-        restaurants: restaurants,
-        keyword: keyword
+        restaurants,
+        keyword
       })
     })
-    .catch(error => console.error(error))
 })
 
 module.exports = router
