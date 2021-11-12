@@ -11,4 +11,4 @@ router.get('facebook/callback', passport.authenticate('facebook', {
   failureRedirect: '/users/login'
 }))
 
-moudle.exports = router
+module.exports = router

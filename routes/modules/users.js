@@ -9,7 +9,7 @@ router.get('login', (req, res) => {
 })
 
 // use authentication to check the register status
-router.posy('/login', passport.authenticate('local', {
+router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/users/login',
   failureFlash: true
@@ -65,7 +65,7 @@ router.post('/register', (req, res) => {
         .genSalt(10)
         .then(salt => bcrypt.hash(password, salt))
         .then(hash => User.create({
-          neme,
+          name,
           email,
           password: hash
         }))
@@ -78,4 +78,4 @@ router.get('/logout', (req, res) => {
   req.flash('success_msg', '你已成功登出!')
   res.redirect('/users/login')
 })
-moudle.exports = router
+module.exports = router
