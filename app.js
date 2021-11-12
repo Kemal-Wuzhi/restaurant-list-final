@@ -17,8 +17,6 @@ const app = express()
 const PORT = process.env.PORT
 
 
-
-
 // template engine
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',
@@ -41,8 +39,6 @@ app.use(express.static('public'))
 app.use(express.urlencoded({
   extended: true
 }))
-
-// methodOverride
 app.use(methodOverride('_method'))
 usePassport(app)
 

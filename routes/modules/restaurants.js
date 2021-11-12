@@ -1,20 +1,18 @@
 const express = require('express')
 const router = express.Router()
-
 const Restaurant = require('../../models/restaurant')
 
-// route of adding new data
+// enter create page
 router.get('/new', (req, res) => {
-  return res.render('new')
+  res.render('new')
 })
-
-// add new data to the db
+// create function
 router.post('/', (req, res) => {
   const restaurant = new Restaurant({
     name: req.body.name,
     name_en: req.body.name_en,
     category: req.body.category,
-    image: req.body.image,
+    image: req.body.image || 'https://cdn2.ettoday.net/images/1734/d1734833.jpg',
     location: req.body.location || null,
     google_map: req.body.google_map,
     rating: req.body.rating,
@@ -28,7 +26,7 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// route of show page
+// enter detail page
 router.get('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
@@ -43,11 +41,10 @@ router.get('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// route of edit 
+// enter edit page
 router.get('/:id/edit', (req, res) => {
-  const _id = req.params.id
   const userId = req.user._id
-
+  const _id = req.params.id
   return Restaurant.findOne({
       _id,
       userId
@@ -58,8 +55,7 @@ router.get('/:id/edit', (req, res) => {
     }))
     .catch(error => console.log(error))
 })
-
-// POST
+//  edit function
 router.put('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
@@ -75,27 +71,27 @@ router.put('/:id', (req, res) => {
     description
   } = req.body
 
-  return findOne({
+  return Restaurant.findOne({
       _id,
       userId
     })
     .then(restaurant => {
-      restaurant.name = name
-      restaurant.name_en = name_en
-      restaurant.category = category
-      restaurant.image = image
-      restaurant.location = location
-      restaurant.phone = phone
-      restaurant.google_map = google_map
-      restaurant.rating = rating
-      restaurant.description = description
+      restaurant.name = req.body.name
+      restaurant.name_en = req.body.name_en
+      restaurant.category = req.body.category
+      restaurant.image = req.body.image
+      restaurant.location = req.body.location
+      restaurant.phone = req.body.phone
+      restaurant.google_map = req.body.google_map
+      restaurant.rating = req.body.rating
+      restaurant.description = req.body.description
       return restaurant.save()
     })
-    .then(() => res.redirect(`/restaurants/${id}`))
+    .then(() => res.redirect(`/restaurants/${_id}`))
     .catch(error => console.log(error))
 })
 
-// route of delete
+// delete function
 router.delete('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id

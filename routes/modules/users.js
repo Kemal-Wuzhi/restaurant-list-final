@@ -4,7 +4,7 @@ const User = require('../../models/user')
 const passport = require('passport')
 const bcrypt = require('bcryptjs')
 
-router.get('login', (req, res) => {
+router.get('/login', (req, res) => {
   res.render('login')
 })
 
@@ -16,6 +16,10 @@ router.post('/login', passport.authenticate('local', {
 }))
 
 //register
+router.get('/register', (req, res) => {
+  res.render('register')
+})
+
 router.post('/register', (req, res) => {
   const {
     name,
