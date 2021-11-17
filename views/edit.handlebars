@@ -1,55 +1,122 @@
-<form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST" class="w-50 ml-5 mt-5">
+<div class="container py-5">
 
-  <div class="form-group">
-    <label for="name">name</label>
-    <input type="text" class="form-control" id="name" name="name" value="{{restaurant.name}}" required>
+  <div class="row">
+    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">修改餐廳內容</h5>
+          <hr>
+          <form method="POST" action="/restaurants/{{ restaurant._id }}?_method=PUT">
+
+            <div class="form-group form-row">
+              <label for="name" class="col-md-4 col-form-label">
+                餐廳名稱
+              </label>
+              <div class="col-md-8">
+                <input type="text" placeholder="沙巴巴中東美食" name="name" class="form-control" id="name"
+                  value="{{ restaurant.name }}" required>
+                <small class="text-muted form-text">此欄為必填</small>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="name_en" class="col-md-4 col-form-label">
+                餐廳英文名稱
+              </label>
+              <div class="col-md-8">
+                <input type="text" placeholder="Sababa Pita Bar" name="name_en" class="form-control" id="name_en"
+                  value="{{ restaurant.name_en }}">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="category" class="col-md-4 col-form-label">
+                類別
+              </label>
+              <div class="col-md-8">
+                <input list="categories" placeholder="若選單沒有可自由填寫類別" name="category" class="form-control" id="category"
+                  value="{{ restaurant.category }}" required>
+                <small class="text-muted form-text">此欄為必填</small>
+                <datalist id="categories">
+                  <option>中東料理</option>
+                  <option>義式餐廳</option>
+                  <option>酒吧</option>
+                  <option>日本料理</option>
+                  <option>美式</option>
+                  <option>咖啡</option>
+                </datalist>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="image" class="col-md-4 col-form-label">
+                餐廳圖片網址
+              </label>
+              <div class="col-md-8">
+                <input type="text"
+                  placeholder="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg" name="image"
+                  class="form-control" id="image" value="{{ restaurant.image }}">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="location" class="col-md-4 col-form-label">
+                餐廳地址
+              </label>
+              <div class="col-md-8">
+                <input type="text" placeholder="台北市羅斯福路三段 283 巷 17 號" name="location" class="form-control" id="location"
+                  value="{{ restaurant.location }}" required>
+                <small class="text-muted form-text">此欄為必填</small>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="phone" class="col-md-4 col-form-label">
+                餐廳電話
+              </label>
+              <div class="col-md-8">
+                <input type="text" placeholder="02 2363 8009" name="phone" class="form-control" id="phone"
+                  value="{{ restaurant.phone }}" required>
+                <small class="text-muted form-text">此欄為必填</small>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="google_map" class="col-md-4 col-form-label">
+                Google map網址
+              </label>
+              <div class="col-md-8">
+                <input type="text" placeholder="https://goo.gl/maps/BJdmLuVdDbw" name="google_map" class="form-control"
+                  id="google_map" value="{{ restaurant.google_map }}">
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="rating" class="col-md-4 col-form-label">
+                評比分數
+              </label>
+              <div class="col-md-8">
+                <input type="number" placeholder="4.1" name="rating" class="form-control" id="rating" max="5" min="1"
+                  step="0.1" value="{{ restaurant.rating }}" required>
+                <small class="text-muted form-text">此欄為必填</small>
+              </div>
+            </div>
+
+            <div class="form-group form-row">
+              <label for="description" class="col-md-4 col-form-label">
+                餐廳簡介
+              </label>
+              <div class="col-md-8">
+                <textarea type="text" placeholder="(選填）沙巴巴批塔是台灣第一家純手工批塔專賣店,只選用最新鮮的頂級原料,以及道地的中東家傳配方。" name="description"
+                  class="form-control" id="description" rows="3"></textarea>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" type="submit">完成</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
   </div>
-
-  <div class="form-group">
-    <label for="name">name_en</label>
-    <input type="text" class="form-control" id="name_en" name="name_en" value="{{restaurant.name_en}}" required>
-  </div>
-
-  <div class="form-group">
-    <label for="category">Category</label>
-    <input type="text" class="form-control" id="category" name="category" value="{{restaurant.category}}" required>
-  </div>
-
-  <div class="form-group">
-    <label for="image">Picture</label>
-    <input type="url" class="form-control" id="image" name="image" value="{{restaurant.image}}" required>
-  </div>
-
-  <div class="form-group">
-    <label for="location">Address</label>
-    <input type="text" class="form-control" id="location" name="location" value="{{restaurant.location}}" required>
-  </div>
-
-  <div class="form-group">
-    <label for="phone">Phone</label>
-    <input type="tel" class="form-control" id="phone" name="phone" value="{{restaurant.phone}}" required>
-  </div>
-
-  <div class="form-group">
-    <label for="google_map">Google Maps</label>
-    <input type="url" class="form-control" id="google_map" name="google_map" value="{{restaurant.google_map}}">
-  </div>
-
-  <div class="form-group">
-    <label for="rating">Rating</label>
-    <input type="number" class="form-control" id="rating" name="rating" value="{{restaurant.rating}}" min="1" max="5"
-      step="0.1">
-  </div>
-
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea class="form-control" id="description" name="description">{{restaurant.description}}</textarea>
-  </div>
-
-  <button type="submit" class="btn btn-primary">Save</button>
-
-  <form action="/">
-    <button type="submit" class="btn btn-danger ml-2">Cancel</button>
-  </form>
-
-</form>
+</div>
