@@ -2,11 +2,11 @@ const express = require('express')
 const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
-// enter create page
+//create page
 router.get('/new', (req, res) => {
   res.render('new')
 })
-// create function
+//create function
 router.post('/', (req, res) => {
   const restaurant = new Restaurant({
     name: req.body.name,
@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// enter detail page
+//detail page
 router.get('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
@@ -41,7 +41,7 @@ router.get('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// enter edit page
+//edit page
 router.get('/:id/edit', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
@@ -55,7 +55,7 @@ router.get('/:id/edit', (req, res) => {
     }))
     .catch(error => console.log(error))
 })
-//  edit function
+//edit function
 router.put('/:id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.id

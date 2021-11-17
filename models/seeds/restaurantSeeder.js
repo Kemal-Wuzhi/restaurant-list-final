@@ -10,12 +10,12 @@ const db = require('../../config/mongoose')
 
 const SEED_USER = [{
     email: 'user1@example.com',
-    password: '00000000',
+    password: '12345678',
     restaurantList_index: [0, 1, 2]
   },
   {
     email: 'user2@example.com',
-    password: '00000000',
+    password: '12345678',
     restaurantList_index: [3, 4, 5]
   }
 ]
